@@ -1,0 +1,34 @@
+clingo version 4.5.4
+Reading from input.lp ...
+Solving...
+Answer: 1
+marry(1,1) marry(2,2) marry(5,5)
+Answer: 2
+marry(1,1) marry(2,2) marry(4,5)
+SATISFIABLE
+
+Models       : 2     
+Calls        : 1
+Time         : 0.006s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.000s
+
+Choices      : 6       
+Conflicts    : 5        (Analyzed: 0)
+Restarts     : 0       
+Model-Level  : 5.5     
+Problems     : 1        (Average Length: 0.00 Splits: 0)
+Lemmas       : 0        (Deleted: 0)
+  Binary     : 0        (Ratio:   0.00%)
+  Ternary    : 0        (Ratio:   0.00%)
+  Conflict   : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Loop       : 0        (Average Length:    0.0 Ratio:   0.00%) 
+  Other      : 0        (Average Length:    0.0 Ratio:   0.00%) 
+
+Atoms        : 190     
+Rules        : 496      (1: 356/481 2: 15/0 3: 15/15)
+Bodies       : 223     
+Equivalences : 288      (Atom=Atom: 130 Body=Body: 0 Other: 158)
+Tight        : Yes
+Variables    : 51       (Eliminated:    0 Frozen:    0)
+Constraints  : 201      (Binary: 86.1% Ternary: 11.4% Other:  2.5%)
+
