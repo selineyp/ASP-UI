@@ -6,10 +6,6 @@
 package aspuser;
 import java.util.List;
 import java.util.Arrays;
-import java.util.Enumeration;
-import javax.swing.AbstractButton;
-import javax.swing.ButtonGroup;
-
 import java.util.ArrayList;
 import java.lang.Runtime;
 import java.io.BufferedReader;
@@ -20,9 +16,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Enumeration;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 /**
@@ -225,20 +224,20 @@ public class NewJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
    File file;
-   
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here: 
+        // TODO add your handling code here:
     String command="null";
-    
+
     if (getSelectedButtonText(buttonGroup1) == "Rank"){
-        
+
        List<String> lines = new ArrayList<String>();
         String s="";
         BufferedReader br = null;
         if(file == null){
            s =  textArea.getText();
            lines = Arrays.asList(s.split("\n"));
-          
+
         }
         else{
         try {
@@ -261,17 +260,17 @@ public class NewJFrame extends javax.swing.JFrame {
              }
         }
         }
-        
+
        if(lines.size() < 2){
            JOptionPane.showMessageDialog(this, "Invalid Input!");
            return;
    }
-       
+
        int m_size = Integer.parseInt(lines.get(0));
        int w_size = Integer.parseInt(lines.get(1));
           int m_maxLen = 0;
    int w_maxLen = 0;
-   
+
    for(int i=2;i<m_size+2;i++ )
    {
        if(lines.get(i).length() > m_maxLen)
@@ -282,8 +281,8 @@ public class NewJFrame extends javax.swing.JFrame {
        if(lines.get(i).length() > w_maxLen)
          w_maxLen = lines.get(i).length();
    }
-   
-       
+
+
            if(lines.size() != m_size + w_size + 2 || m_maxLen > 2*m_size || w_maxLen > 2*w_size ){
            JOptionPane.showMessageDialog(this, "Invalid Input!");
            return;
@@ -291,25 +290,25 @@ public class NewJFrame extends javax.swing.JFrame {
        String[] m_preflists;
        ArrayList<String[]> split_w = new ArrayList<String[]>();
        ArrayList<String[]> split_m = new ArrayList<String[]>();
-       
+
       for(int i=0; i<m_size;i++)
       {
          String k=lines.get(i + 2);
          String[] l=k.split(" ");
           split_m.add(l);
       }
-   
+
       for(int i=0; i<w_size;i++)
       {
          String k=lines.get(i + 2 + m_size);
          String[] l=k.split(" ");
           split_w.add(l);
       }
-      
-      
+
+
       BufferedWriter bw = null;
       FileWriter fw = null;
-     
+
         try {
             fw = new FileWriter("input.lp");
         } catch (IOException ex) {
@@ -326,7 +325,7 @@ public class NewJFrame extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-  
+
     for(int i=0;i<m_size;i++)
         for(int k=0;k<split_m.get(i).length;k++)
              try {
@@ -339,7 +338,7 @@ public class NewJFrame extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
     for(int i=0;i<w_size;i++)
            for(int k=0;k<split_w.get(i).length;k++)
              try {
@@ -352,23 +351,23 @@ public class NewJFrame extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
+
         try {
             fw.close();
         } catch (IOException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }}
-    
+
     else{
     List<String> lines = new ArrayList<String>();
     String s="";
-        
+
     if(file == null){
     s = textArea.getText();
     lines = Arrays.asList(s.split("\n"));
     }
     else{
-    
+
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(file));
@@ -394,13 +393,13 @@ public class NewJFrame extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(this, "Invalid Input!");
            return;
    }
-  
+
        int m_size = Integer.parseInt(lines.get(0));
        int w_size = Integer.parseInt(lines.get(1));
-       
+
    int m_maxLen = 0;
    int w_maxLen = 0;
-   
+
    for(int i=2;i<m_size+2;i++ )
    {
        if(lines.get(i).length() > m_maxLen)
@@ -411,8 +410,8 @@ public class NewJFrame extends javax.swing.JFrame {
        if(lines.get(i).length() > w_maxLen)
          w_maxLen = lines.get(i).length();
    }
-   
-   
+
+
         if(lines.size() != m_size + w_size + 2 || m_maxLen > 2*m_size || w_maxLen > 2*w_size ){
            JOptionPane.showMessageDialog(this, "Invalid Input!");
            return;
@@ -420,26 +419,26 @@ public class NewJFrame extends javax.swing.JFrame {
        List<String[]> m_preflists;
        ArrayList<String[]> split_w = new ArrayList<String[]>();
        ArrayList<String[]> split_m = new ArrayList<String[]>();
-       
-    
+
+
       for(int i=0; i<m_size;i++)
       {
          String k=lines.get(i + 2);
          String[] l=k.split(" ");
           split_m.add(l);
       }
-   
+
       for(int i=0; i<w_size;i++)
       {
          String k=lines.get(i + 2 + m_size);
          String[] l=k.split(" ");
           split_w.add(l);
       }
-      
-      
+
+
       BufferedWriter bw = null;
       FileWriter fw = null;
-     
+
         try {
             fw = new FileWriter("input.lp");
         } catch (IOException ex) {
@@ -456,8 +455,8 @@ public class NewJFrame extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-  
- 
+
+
  ArrayList<List<Tuple>> m_preflists1= new ArrayList<List<Tuple>>();
  int curr;
    for(int i=0;i<m_size;i++)
@@ -482,10 +481,10 @@ public class NewJFrame extends javax.swing.JFrame {
          }
       m_preflists1.add(preflist);
     }
-  
+
 
  ArrayList<List<Tuple>> w_preflists1= new ArrayList<List<Tuple>>();
- 
+
    for(int i=0;i<m_size;i++)
 {
     String temp=lines.get(i+2+m_size);
@@ -508,8 +507,8 @@ public class NewJFrame extends javax.swing.JFrame {
         }
       w_preflists1.add(preflist);
     }
-   
- 
+
+
     for(int i=0; i<m_size;i++)
         for(int k=0;k<m_preflists1.get(i).size();k++)
              try {
@@ -545,7 +544,7 @@ public class NewJFrame extends javax.swing.JFrame {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-        
+
      if(jComboBox1.getSelectedItem()=="SMP with Ties and Inc.")
          command = "clingo/clingo --stats input.lp codes/smpti.lp 0";
     else if(jComboBox1.getSelectedItem()=="Sex Equal")
@@ -556,12 +555,12 @@ public class NewJFrame extends javax.swing.JFrame {
        command = "clingo/clingo --stats input.lp codes/smpti.lp codes/egalitarian.lp 0";
      else if(jComboBox1.getSelectedItem()=="Max Cardinality")
        command = "clingo/clingo --stats input.lp codes/smpti.lp codes/maxcardinality.lp 0";
-     
+
   List<String> li= new ArrayList<String>(Arrays.asList(command.split(" ")));
   ProcessBuilder builder = new ProcessBuilder(li);
   builder.redirectErrorStream(true);
    String[] match=null;
-    long start = System.nanoTime(); 
+    long start = System.nanoTime();
         try {
             Process p = builder.start();
         } catch (IOException ex) {
@@ -576,7 +575,7 @@ public class NewJFrame extends javax.swing.JFrame {
         }
     BufferedReader stdInput = new BufferedReader(new InputStreamReader(pr.getInputStream()));
     long end = System.nanoTime();
-    
+
      String line=null;
         try {
             line = stdInput.readLine();
@@ -584,7 +583,7 @@ public class NewJFrame extends javax.swing.JFrame {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
      String output="";
-     
+
      while (line != null)
      {
          output+=line+"\n";
@@ -594,9 +593,9 @@ public class NewJFrame extends javax.swing.JFrame {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
      }
-     
+
     String[] lines = output.split("\n");
-   
+
     for(int i=0;i<lines.length;i++)
     {
         if(lines[i].equals("OPTIMUM FOUND"))
@@ -604,10 +603,10 @@ public class NewJFrame extends javax.swing.JFrame {
             match=lines[i-2].split(" ");
             String[] optval= lines[i-1].split(" ");
             double seconds = (double)(end-start) / 1000000000.0;
-            System.out.println("running time: " +seconds+ " seconds\noptimization:"+optval[1]); 
+            System.out.println("running time: " +seconds+ " seconds\noptimization:"+optval[1]);
             break;
         }
-          }   
+          }
            String resultfile = "result.txt";
            FileWriter fw = null;
         try {
@@ -628,19 +627,19 @@ public class NewJFrame extends javax.swing.JFrame {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     //  System.out.println(output);
-         
-           
+
+
       for(int i=0;i<lines.length;i++)
     {
         if(lines[i].equals("SATISFIABLE"))
         {
-             match=lines[i-1].split(" "); 
+             match=lines[i-1].split(" ");
              double seconds = (double)(end-start) / 1000000000.0;
             //System.out.println("running time: " +seconds+ " seconds\n");
          break;
         }
 }
-       
+
         try {
             fw.write("  "+"M"+"    "+"W");
         } catch (IOException ex) {
@@ -654,7 +653,7 @@ public class NewJFrame extends javax.swing.JFrame {
     if(word.substring(0,5).equals("marry"))
     {
         String[] arr=word.substring(6,9).split(",");
-        try { 
+        try {
             fw.write("  "+ arr[0] + "    " + arr[1]);
         } catch (IOException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -665,9 +664,9 @@ public class NewJFrame extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-  
-  
-} 
+
+
+}
    JOptionPane.showMessageDialog(this, "Result can be read from result.txt");
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -678,19 +677,19 @@ public class NewJFrame extends javax.swing.JFrame {
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
-     
-        
- 
+
+
+
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
         // TODO add your handling code here:
-         
+
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -721,7 +720,7 @@ public class NewJFrame extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -760,6 +759,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
@@ -781,4 +781,4 @@ class MyCustomFilter extends javax.swing.filechooser.FileFilter {
             // hard-coded = ugly, should be done via I18N
             return "Text documents (*.txt)";
         }
-    } 
+    }
