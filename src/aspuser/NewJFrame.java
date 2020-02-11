@@ -86,7 +86,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ASP", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 13), new java.awt.Color(0, 204, 204))); // NOI18N
 
-        jLabel2.setText("       Please choose the SMP variation.");
+        jLabel2.setText("      Please choose the SMP variation");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SMP with Ties and Inc.", "Sex Equal", "Egalitarian", "Min Regret", "Max Cardinality", " " }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +95,7 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Please specify the input format.");
+        jLabel3.setText("Please specify the input format");
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Rank");
@@ -150,7 +150,7 @@ public class NewJFrame extends javax.swing.JFrame {
                                         .addComponent(jRadioButton1)
                                         .addGap(38, 38, 38)
                                         .addComponent(jRadioButton2)))))
-                        .addGap(0, 144, Short.MAX_VALUE)))
+                        .addGap(0, 147, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(113, 113, 113)
@@ -234,33 +234,9 @@ public class NewJFrame extends javax.swing.JFrame {
        List<String> lines = new ArrayList<String>();
         String s="";
         BufferedReader br = null;
-        if(file == null){
-           s =  textArea.getText();
-           lines = Arrays.asList(s.split("\n"));
-
-        }
-        else{
-        try {
-            br = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            s=br.readLine();
-        } catch (IOException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         while(s!=null)
-         {
-            lines.add(s);
-             try {
-                 s=br.readLine();
-             } catch (IOException ex) {
-                 Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-             }
-        }
-        }
-
+        s =  textArea.getText();
+        lines = Arrays.asList(s.split("\n"));
+        
        if(lines.size() < 2){
            JOptionPane.showMessageDialog(this, "Invalid Input!");
            return;
@@ -358,37 +334,12 @@ public class NewJFrame extends javax.swing.JFrame {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }}
 
-    else{
+    else if(getSelectedButtonText(buttonGroup1) == "Preference"){
     List<String> lines = new ArrayList<String>();
     String s="";
-
-    if(file == null){
-    s = textArea.getText();
+     s = textArea.getText();
     lines = Arrays.asList(s.split("\n"));
-    }
-    else{
 
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader(file));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            s=br.readLine();
-        } catch (IOException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         while(s!=null)
-         {
-            lines.add(s);
-             try {
-                 s=br.readLine();
-             } catch (IOException ex) {
-                 Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-             }
-        }
-    }
   if(lines.size() < 2   ){
            JOptionPane.showMessageDialog(this, "Invalid Input!");
            return;
@@ -412,7 +363,7 @@ public class NewJFrame extends javax.swing.JFrame {
    }
 
 
-        if(lines.size() != m_size + w_size + 2 || m_maxLen > 2*m_size || w_maxLen > 2*w_size ){
+        if(lines.size() != m_size + w_size + 2 || m_maxLen > 4*m_size || w_maxLen > 4*w_size ){
            JOptionPane.showMessageDialog(this, "Invalid Input!");
            return;
    }
@@ -544,17 +495,20 @@ public class NewJFrame extends javax.swing.JFrame {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    else
+    {JOptionPane.showMessageDialog(this, "Please specify the input format");
+return;
+    }
      if(jComboBox1.getSelectedItem()=="SMP with Ties and Inc.")
-         command = "clingo/clingo --stats input.lp codes/smpti.lp 0";
+         command = "clingo --stats input.lp codes/smpti.lp 0";
     else if(jComboBox1.getSelectedItem()=="Sex Equal")
-       command = "clingo/clingo --stats input.lp codes/smpti.lp codes/sexequal.lp 0";
+       command = "clingo --stats input.lp codes/smpti.lp codes/sexequal.lp 0";
      else if(jComboBox1.getSelectedItem()=="Min Regret")
-       command = "clingo/clingo --stats input.lp codes/smpti.lp codes/minregret.lp 0";
+       command = "clingo --stats input.lp codes/smpti.lp codes/minregret.lp 0";
      else if(jComboBox1.getSelectedItem()=="Egalitarian")
-       command = "clingo/clingo --stats input.lp codes/smpti.lp codes/egalitarian.lp 0";
+       command = "clingo --stats input.lp codes/smpti.lp codes/egalitarian.lp 0";
      else if(jComboBox1.getSelectedItem()=="Max Cardinality")
-       command = "clingo/clingo --stats input.lp codes/smpti.lp codes/maxcardinality.lp 0";
+       command = "clingo --stats input.lp codes/smpti.lp codes/maxcardinality.lp 0";
 
   List<String> li= new ArrayList<String>(Arrays.asList(command.split(" ")));
   ProcessBuilder builder = new ProcessBuilder(li);
@@ -608,26 +562,16 @@ public class NewJFrame extends javax.swing.JFrame {
         }
           }
            String resultfile = "result.txt";
-           FileWriter fw = null;
+           FileWriter rw = null;
         try {
-            fw = new FileWriter(resultfile);
+            rw = new FileWriter(resultfile);
+            
         } catch (IOException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
            BufferedWriter bw = null;
-	   bw = new BufferedWriter(fw);
-        try {
-            bw.write(output);
-        } catch (IOException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            bw.close();
-        } catch (IOException ex) {
-            Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    //  System.out.println(output);
-
+	   bw = new BufferedWriter(rw);
+      
 
       for(int i=0;i<lines.length;i++)
     {
@@ -641,7 +585,7 @@ public class NewJFrame extends javax.swing.JFrame {
 }
 
         try {
-            fw.write("  "+"M"+"    "+"W");
+            bw.write("  "+"M"+"    "+"W \n" );
         } catch (IOException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -654,19 +598,18 @@ public class NewJFrame extends javax.swing.JFrame {
     {
         String[] arr=word.substring(6,9).split(",");
         try {
-            fw.write("  "+ arr[0] + "    " + arr[1]);
+            bw.write("  "+ arr[0] + "    " + arr[1] + "\n");
         } catch (IOException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
      }
-     try {
-            fw.close();
+  
+}
+       try {
+            bw.close();
         } catch (IOException ex) {
             Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
-}
    JOptionPane.showMessageDialog(this, "Result can be read from result.txt");
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -759,7 +702,6 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
