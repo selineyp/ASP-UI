@@ -1,7 +1,7 @@
 # ASP-UI
 
 This software provides a user interface for solving Stable Marriage Problem with SAT solver clingo.
-Users may select .txt input files by File tab and/or edit them in text area.
+Users may select .txt input files by clicking the File tab and/or edit them in text area.
 
 ## Input format
 First line is reserved for number of men, second line for number of women.
