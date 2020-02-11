@@ -9,7 +9,7 @@ Starting with 3rd line, preference list of each men should be specified.
 ex: i^th man's preference list should be on (i+2)^th line.
 Similarly, women's preference lists should follow men's.
 
-##Rank/Preference
+## Rank/Preference
 
 If preference lists are provided as a ranking of individuals, indices should be separated by single space.
 ex: '1 2 3'
@@ -20,7 +20,7 @@ If preference lists are provided as a comparison of individuals, indices should 
 Operators should be surrounded by single space.
 ex:'1 < 2 < 3'
 
-##How to run
+## How to run
 clingo 5.2.2 must be installed in command line.
 See: https://potassco.org/clingo/
 
