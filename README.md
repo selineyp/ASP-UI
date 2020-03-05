@@ -11,16 +11,25 @@ Similarly, women's preference lists should follow men's.
 
 ## Rank/Preference
 
-If preference lists are provided as a ranking of individuals, indices should be separated by single space.
- ex: '1 2 3'
+If preference lists are provided as a ranking of individuals, indices and ranks should be separated by single space.
+Length of an individual's list should be written at the initial line.
 
-If preference lists are provided as a comparison of individuals, indices should be separated by one the following operators:
- ' < , > , = '
-
-Operators should be surrounded by single space.
- ex:'1 < 2 < 3'
-
-## How to run
+ ex: '1'
+     '1 3'
+     
+ ex: '2'
+     '1 3'
+     '2 1'
+     
+ If preference lists actually represent an ordering of individuals. After specifying the number of men and women, 
+ men's preferences will occupy each line in the following format:
+ 
+  ex: '2 3 {1,4}' - curly braces represent ties
+  
+ After men's preference lists, women's preferences should be specified.
+     
+ 
+ ## How to run
 clingo 5.2.2 must be installed in command line.
 See: https://potassco.org/clingo/
 
