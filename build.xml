@@ -7,7 +7,7 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="aspuser" default="default" basedir=".">
+<project name="aspuser" default="default" basedir="." xmlns:if="ant:if">
     <description>Builds, tests, and runs the project aspuser.</description>
 
         <property name="src.dir"     value="src"/>
@@ -19,6 +19,9 @@
         <property name="main-class"  value="aspuser.NewJFrame"/>
 
 
+
+            <property name="testing" value="false"/>
+
         <target depends="test,jar,javadoc" description="Build and test whole project." name="default"/>
 
 
@@ -28,8 +31,9 @@
 
             <target name="compile">
                 <mkdir dir="${classes.dir}"/>
-                <javac srcdir="${src.dir}" destdir="${classes.dir}"/>
+                <javac srcdir="${src.dir}" destdir="${classes.dir}" debug="true"/>
             </target>
+
 
             <target name="jar" depends="compile">
                 <mkdir dir="${jar.dir}"/>
@@ -41,8 +45,16 @@
             </target>
 
             <target name="run" depends="jar">
-                <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
+                <java jar="${jar.dir}/${ant.project.name}.jar" fork="true">
+                  <arg value="${file}" if:true="${testing}"/>
+                  <arg value="${s}" if:true="${testing}"/>
+                  <arg value="${opt}" if:true="${testing}"/>
+                </java>
             </target>
+
+            <condition property="testing">
+                <os family="mac"/>
+            </condition>
 
             <target name="test"/>
             <target name="javadoc"/>
