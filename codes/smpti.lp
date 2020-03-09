@@ -1,7 +1,7 @@
 % GENERATE
 
-{msingle(M)} :- man(M).
-{wsingle(F)} :- woman(F).
+%{msingle(M)} :- man(M).
+%{wsingle(F)} :- woman(F).
 
 % M prefers F to single
 m2single(M, F) :- man(M), woman(F), mrank(M, F, X).
@@ -12,9 +12,15 @@ w2single(F, M) :- man(M), woman(F), wrank(F, M, X).
 % acceptability
 acceptable(M,F) :- m2single(M, F), w2single(F, M).
 
-{marry(M,F) : woman(F), acceptable(M,F), not wsingle(F)} = 1 :- man(M), not msingle(M).
+%{marry(M,F) : woman(F), acceptable(M,F), not wsingle(F)} = 1 :- man(M), not msingle(M).
+%:- {marry(M, F) : man(M)} > 1, woman(F).
+%:- not wsingle(F), {marry(M,F) : man(M)}0, woman(F).
+
+msingle(M) :- man(M), {marry(M, W) : woman(W)}0.
+wsingle(W) :- woman(W), {marry(M, W) : man(M)}0.
+
+{marry(M,F) : woman(F), acceptable(M,F)}1 :- man(M).
 :- {marry(M, F) : man(M)} > 1, woman(F).
-:- not wsingle(F), {marry(M,F) : man(M)}0, woman(F).
 
 % DEFINE
 
