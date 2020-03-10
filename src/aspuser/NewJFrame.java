@@ -732,9 +732,9 @@ public class NewJFrame extends javax.swing.JFrame {
                 command =  m + " codes/sexequal.lp 0";
               else if(opt_var == 2)
                 command = m + " codes/minregret.lp 0";
-              else if(opt_var == 2)
-                command = m + " codes/egalitarian.lp 0";
               else if(opt_var == 3)
+                command = m + " codes/egalitarian.lp 0";
+              else if(opt_var == 4)
                 command = m + " codes/maxcardinality.lp 0";
 
         ArrayList<String> lines = new ArrayList<String>();
