@@ -710,7 +710,8 @@ public class NewJFrame extends javax.swing.JFrame {
          */
         boolean isCmd = false;
         int opt_var = 0;
-        if(args.length > 0){isCmd = true;}
+        System.out.println(args[0]);
+        if(args[0].length() > 1){isCmd = true;}
         if(isCmd){
 
           String filename = args[0];

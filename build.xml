@@ -15,6 +15,9 @@
         <property name="build.dir"   value="build"/>
         <property name="classes.dir" value="${build.dir}/classes"/>
         <property name="jar.dir"     value="${build.dir}/jar"/>
+        <property name="file" value=""/>
+        <property name="s" value=""/>
+        <property name="opt" value=""/>
 
         <property name="main-class"  value="aspuser.NewJFrame"/>
 
@@ -46,9 +49,9 @@
 
             <target name="run" depends="jar">
                 <java jar="${jar.dir}/${ant.project.name}.jar" fork="true">
-                  <arg value="${file}" if:true="${testing}"/>
-                  <arg value="${s}" if:true="${testing}"/>
-                  <arg value="${opt}" if:true="${testing}"/>
+                  <arg value="${file}" />
+                  <arg value="${s}"/>
+                  <arg value="${opt}" />
                 </java>
             </target>
 
