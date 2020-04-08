@@ -31,7 +31,8 @@ wprefer(F, DM, CM) :- wrank(F, CM, CUR), wrank(F, DM, DEV),  DEV < CUR.
 % m1-f1, m2-f2 -- m1 and f2 block - sticky stability
 
 :- marry(M1, F1), marry(M2, F2), k_man(M1,K1), mrank(M1,F1,R), mrank(M1,F2,R1), R - R1 > K1,
-                                 k_woman(F2,K2), wrank(M1,F1,R), mrank(M1,F2,R1), R - R1 > K2 .
+                                 k_woman(F2,K2), wrank(F2,M2,R), wrank(F2,M1,R1), R - R1 > K2 .
+
 
 % m-f1, f2 single -- m and f2 block
 :- man(M), woman(F1), woman(F2), acceptable(M,F2), wsingle(F2), marry(M,F1), k_man(M,K), mrank(M,F1,R), mrank(M,F2,R1), R - R1 > K.

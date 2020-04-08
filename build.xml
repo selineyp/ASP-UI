@@ -20,9 +20,6 @@
         <property name="opt" value=""/>
 
         <property name="main-class"  value="aspuser.NewJFrame"/>
-
-
-
             <property name="testing" value="false"/>
 
         <target depends="test,jar,javadoc" description="Build and test whole project." name="default"/>
@@ -34,7 +31,7 @@
 
             <target name="compile">
                 <mkdir dir="${classes.dir}"/>
-                <javac srcdir="${src.dir}" destdir="${classes.dir}" debug="true"/>
+                <javac srcdir="${src.dir}" destdir="${classes.dir}" debug="false"/>
             </target>
 
 
@@ -50,8 +47,8 @@
             <target name="run" depends="jar">
                 <java jar="${jar.dir}/${ant.project.name}.jar" fork="true">
                   <arg value="${file}" />
-                  <arg value="${s}"/>
                   <arg value="${opt}" />
+                  <arg value="${s}"/>
                 </java>
             </target>
 

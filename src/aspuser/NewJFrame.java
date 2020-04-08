@@ -99,7 +99,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SMPTI Solver", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 13), new java.awt.Color(0, 204, 204))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SMPTI Solver", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 13), new java.awt.Color(0, 0, 0))); // NOI18N
 
 
         jLabel2.setText("      Select optimization");
@@ -247,13 +247,13 @@ public class NewJFrame extends javax.swing.JFrame {
         if(jComboBox1.getSelectedItem()=="No Optimization")
            command = m + " 0";
        else if(jComboBox1.getSelectedItem()=="Sex Equal")
-          command =  m + " codes/sexequal.lp 0";
+          command =  m + " codes/sexequal.lp";
         else if(jComboBox1.getSelectedItem()=="Min Regret")
-          command = m + " codes/minregret.lp 0";
+          command = m + " codes/minregret.lp";
         else if(jComboBox1.getSelectedItem()=="Egalitarian")
-          command = m + " codes/egalitarian.lp 0";
+          command = m + " codes/egalitarian.lp";
         else if(jComboBox1.getSelectedItem()=="Max Cardinality")
-          command = m + " codes/maxcardinality.lp 0";
+          command = m + " codes/maxcardinality.lp";
 
         solveSMP(lines,"",command);
 
@@ -327,7 +327,7 @@ public class NewJFrame extends javax.swing.JFrame {
 
          bw = new BufferedWriter(fw);
 
-          if(isSticky){
+        if(isSticky){
          for(int i=0; i<m_size;i++)
         {
            String k=lines.get(i + 2);
@@ -629,7 +629,7 @@ public class NewJFrame extends javax.swing.JFrame {
               match=_lines[i-2].split(" ");
               String[] optval= _lines[i-1].split(" ");
               double seconds = (double)(end-start) / 1000000000.0;
-              System.out.println("running time: " +seconds+ " seconds\noptimization:"+optval[1]);
+              //System.out.println("running time: " +seconds+ " seconds\noptimization:"+optval[1]);
               break;
           }
             }
@@ -643,7 +643,7 @@ public class NewJFrame extends javax.swing.JFrame {
           }
              bw = null;
        bw = new BufferedWriter(rw);
-        System.out.println(output);
+        //System.out.println(output);
         for(int i=0;i<_lines.length;i++)
       {
           if(_lines[i].equals("SATISFIABLE"))
@@ -710,17 +710,18 @@ public class NewJFrame extends javax.swing.JFrame {
          */
         boolean isCmd = false;
         int opt_var = 0;
-        System.out.println(args[0]);
+
         if(args[0].length() > 1){isCmd = true;}
         if(isCmd){
-
+          isSticky = false;
+          opt_var = 0;
           String filename = args[0];
-
-          if(Integer.parseInt(args[1]) == 1)
+          if(!args[1].isEmpty())
+          opt_var = Integer.parseInt(args[1]);
+          if(!args[2].isEmpty() && Integer.parseInt(args[2]) == 1)
                 isSticky = true;
 
-          opt_var = Integer.parseInt(args[2]);
-          String command="";
+          String command= "";
           String m = "";
              if(isSticky)
                  m = "clingo input.lp codes/sticky-smpti-v3.lp";
