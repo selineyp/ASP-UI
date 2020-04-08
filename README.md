@@ -1,4 +1,4 @@
-# SMPTI Solver
+# SMTI Solver
 
 This software provides a user interface for solving Stable Marriage Problem(SMP) instances.
 Users may select .txt input files by clicking the File tab and/or edit them in text area.
@@ -52,13 +52,16 @@ Project can also be built and run with parameters, in this case user interface w
 Parameters:
 
 Specifying the file name is required. ex: -Dfile = "filename.txt"
+
 Specifying the optimization variant is optional. Default is no optimization. ex: -Dopt = 0
+
 Optimization variants are given in the following list:
 0 : No optimization
 1 : Sex Equal
 2 : Min Regret
 3 : Egalitarian
 4 : Max Cardinality
+
 Specifying if sticky stability should be used, is optional. Default is weak stability. ex: -Ds = 0
 
 ex: 'ant jar compile run -Dfile="sample_input_rank.txt" -Dopt=1'
