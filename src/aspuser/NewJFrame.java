@@ -643,7 +643,7 @@ public class NewJFrame extends javax.swing.JFrame {
           }
              bw = null;
        bw = new BufferedWriter(rw);
-        //System.out.println(output);
+        System.out.println(output);
         for(int i=0;i<_lines.length;i++)
       {
           if(_lines[i].equals("SATISFIABLE"))
