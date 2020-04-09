@@ -16,13 +16,14 @@ ex: 1 2 3
 These two lines represent the following information: The corresponding individual prefers 1st woman(resp. man) to 2nd and prefers 2nd woman(resp. man) to 3rd.
 
 Preferences of individuals can also be specified with ranks. Length of such ranking list is written at first line reserved to this individual.
-Starting from the 2^nd line, ranks given to individuals of the goal set is specified. In such lines, first number represents the index of the individual who is being given a rank, second number is the rank. Higher ranks represent stronger preference.
+Starting from the 2nd line, ranks given to individuals of the goal set is specified. In such lines, first number represents the index of the individual who is being given a rank, second number is the rank. Higher ranks represent stronger preference.
 
  ex: 2
  
-     1 3
-     
-     2 1
+   1 3
+   
+   
+   3 1
 
 Corresponding individual ranks 1st man(resp. woman) as 3, 2nd man(resp. woman) as 1.
 
@@ -77,3 +78,9 @@ ex: 'ant jar compile run -Dfile="sample_input_rank.txt" -Dopt=1'
 
 
 This command will solve SMP instance given in the file with sex equal optimization.
+
+## Output format
+
+In result.txt,  married pairs are given. For each row in the file, index of man is given under M and woman's index under W.
+If an individual does not appear in columns, then s/he is single.
+
