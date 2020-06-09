@@ -54,6 +54,8 @@ public class NewJFrame extends javax.swing.JFrame {
  */
 
   static boolean isSticky = false;
+  static String show_all = "";
+
      public String getSelectedButtonText(ButtonGroup buttonGroup) {
         for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
             AbstractButton button = buttons.nextElement();
@@ -77,7 +79,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea(100,5100);
+        jTextArea1 = new javax.swing.JTextArea(100,5000);
         fileChooser = new javax.swing.JFileChooser();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -86,6 +88,7 @@ public class NewJFrame extends javax.swing.JFrame {
         textArea = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -99,12 +102,12 @@ public class NewJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SMPTI Solver", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 13), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SMTI Solver", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Grande", 0, 13), new java.awt.Color(0, 0, 0))); // NOI18N
 
 
         jLabel2.setText("      Select optimization");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Optimization", "Sex Equal", "Egalitarian", "Min Regret", "Max Cardinality", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No Optimization", "Sex Equal", "Egalitarian", "Min Regret", "Max Cardinality" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -129,6 +132,13 @@ public class NewJFrame extends javax.swing.JFrame {
             }
         });
 
+        jCheckBox2.setText("Show all stable matchings");
+        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -144,7 +154,7 @@ public class NewJFrame extends javax.swing.JFrame {
                                 .addGap(134, 134, 134)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(29, 29, 29)
+                                        .addGap(37, 37, 37)
                                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()))))
                         .addGap(0, 148, Short.MAX_VALUE)))
@@ -152,6 +162,8 @@ public class NewJFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jCheckBox1)
+                .addGap(25, 25, 25)
+                .addComponent(jCheckBox2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(59, 59, 59))
@@ -170,7 +182,8 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addGap(3, 3, 3)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckBox1))
+                    .addComponent(jCheckBox1)
+                    .addComponent(jCheckBox2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE))
@@ -239,21 +252,22 @@ public class NewJFrame extends javax.swing.JFrame {
 
         String command="null";
         String m = "";
+
        if(jCheckBox1.isSelected())
-           m = "clingo input.lp codes/sticky-smpti-v3.lp";
+           m = "clingo input.lp codes/sticky-smpti-v3.lp " + show_all;
        else
-           m = "clingo input.lp codes/smpti.lp";
+           m = "clingo input.lp codes/smpti.lp "  + show_all;
 
         if(jComboBox1.getSelectedItem()=="No Optimization")
-           command = m + " 0";
+           command = m ;
        else if(jComboBox1.getSelectedItem()=="Sex Equal")
-          command =  m + " codes/sexequal.lp";
+          command =  m + " codes/sexequal.lp ";
         else if(jComboBox1.getSelectedItem()=="Min Regret")
-          command = m + " codes/minregret.lp";
+          command = m + " codes/minregret.lp " ;
         else if(jComboBox1.getSelectedItem()=="Egalitarian")
-          command = m + " codes/egalitarian.lp";
+          command = m + " codes/egalitarian.lp " ;
         else if(jComboBox1.getSelectedItem()=="Max Cardinality")
-          command = m + " codes/maxcardinality.lp";
+          command = m + " codes/maxcardinality.lp " ;
 
         solveSMP(lines,"",command);
 
@@ -620,20 +634,15 @@ public class NewJFrame extends javax.swing.JFrame {
           }
        }
 
-      String[] _lines = output.split("\n");
+      ArrayList<String[]> matches = new ArrayList<String[]>();
+      String pattern = "Answer: \\d+\\n((?:marry\\(\\d,\\d\\) |(?:m|w)single\\(\\d\\) )*(?:marry\\(\\d,\\d\\)|(?:m|w)single\\(\\d\\))*)";
+      Pattern r = Pattern.compile(pattern);
+      Matcher m = r.matcher(output);
+      while (m.find()) {
+          matches.add(m.group(1).split(" "));
+      }
 
-      for(int i=0;i<_lines.length;i++)
-      {
-          if(_lines[i].equals("OPTIMUM FOUND"))
-          {
-              match=_lines[i-2].split(" ");
-              String[] optval= _lines[i-1].split(" ");
-              double seconds = (double)(end-start) / 1000000000.0;
-              //System.out.println("running time: " +seconds+ " seconds\noptimization:"+optval[1]);
-              break;
-          }
-            }
-             String resultfile = "result.txt";
+           String resultfile = "result.txt";
              FileWriter rw = null;
           try {
               rw = new FileWriter(resultfile);
@@ -644,46 +653,42 @@ public class NewJFrame extends javax.swing.JFrame {
              bw = null;
        bw = new BufferedWriter(rw);
         System.out.println(output);
-        for(int i=0;i<_lines.length;i++)
-      {
-          if(_lines[i].equals("SATISFIABLE"))
-          {
-               match=_lines[i-1].split(" ");
-               double seconds = (double)(end-start) / 1000000000.0;
-              //System.out.println("running time: " +seconds+ " seconds\n");
-           break;
-          }
-  }
+        for(int i=0;i<matches.size();i++){
+          match = matches.get(i);
           try {
+              bw.write("Matching " + Integer.toString(i+1) + "\n" );
               bw.write("  "+"M"+"    "+"W \n" );
           } catch (IOException ex) {
               Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
           }
 
-      boolean isMatching = false;
-      if(match != null)
-      for(int w=0;w<match.length;w++)
-    {
-      String word=match[w];
-     if(word.length() >= 5)
-      if(word.substring(0,5).equals("marry"))
-      {
-          isMatching = true;
-          String[] arr=word.substring(6,9).split(",");
-          try {
-              bw.write("  "+ arr[0] + "    " + arr[1] + "\n");
-          } catch (IOException ex) {
-              Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-          }
-       }
+                boolean isMatching = false;
+                if(match != null)
+                for(int w=0;w<match.length;w++)
+              {
+                String word=match[w];
+                if(word.length() >= 5)
+                if(word.substring(0,5).equals("marry"))
+                {
+                    isMatching = true;
+                    String[] arr=word.substring(6,9).split(",");
+                    try {
+                        bw.write("  "+ arr[0] + "    " + arr[1] + "\n");
+                    } catch (IOException ex) {
+                        Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                 }
 
-  }
-      if(!isMatching)
-      try {
-          bw.write("Matching is empty.\n");
-          } catch (IOException ex) {
-              Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
-          }
+            }
+                if(!isMatching)
+                try {
+                    bw.write("Matching is empty.\n");
+                    } catch (IOException ex) {
+                        Logger.getLogger(NewJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+        }
+
+
          try {
               bw.close();
           } catch (IOException ex) {
@@ -699,6 +704,14 @@ public class NewJFrame extends javax.swing.JFrame {
         isSticky = false;
     }
 
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        if (jCheckBox2.isSelected())
+        show_all = " 0";
+        else
+        show_all = "";
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -710,34 +723,38 @@ public class NewJFrame extends javax.swing.JFrame {
          */
         boolean isCmd = false;
         int opt_var = 0;
+        String show_all = " ";
+        
 
-        if(args[0].length() > 1){isCmd = true;}
+        if(!args[0].isEmpty()){isCmd = true;}
         if(isCmd){
           isSticky = false;
           opt_var = 0;
           String filename = args[0];
-          if(!args[1].isEmpty())
+          if(args.length > 1 && !args[1].isEmpty())
           opt_var = Integer.parseInt(args[1]);
-          if(!args[2].isEmpty() && Integer.parseInt(args[2]) == 1)
+          if(args.length > 2 && !args[2].isEmpty() && Integer.parseInt(args[2]) == 1)
                 isSticky = true;
+          if(args.length > 3 && !args[3].isEmpty() && Integer.parseInt(args[3]) == 1)
+                show_all = " 0";
 
           String command= "";
           String m = "";
              if(isSticky)
-                 m = "clingo input.lp codes/sticky-smpti-v3.lp";
+                 m = "clingo input.lp codes/sticky-smpti-v3.lp" ;
              else
                  m = "clingo input.lp codes/smpti.lp";
 
               if(opt_var == 0)
-                  command = m + " 0";
+                command = m + show_all;
              else if(opt_var == 1)
-                command =  m + " codes/sexequal.lp 0";
+                command =  m + " codes/sexequal.lp ";
               else if(opt_var == 2)
-                command = m + " codes/minregret.lp 0";
+                command = m + " codes/minregret.lp ";
               else if(opt_var == 3)
-                command = m + " codes/egalitarian.lp 0";
+                command = m + " codes/egalitarian.lp " ;
               else if(opt_var == 4)
-                command = m + " codes/maxcardinality.lp 0";
+                command = m + " codes/maxcardinality.lp " ;
 
         ArrayList<String> lines = new ArrayList<String>();
         try {
@@ -778,7 +795,7 @@ public class NewJFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
               NewJFrame f = new NewJFrame();
-              f.setSize(500,400);
+              f.setSize(600,400);
               f.setVisible(true);
             }
         });
@@ -788,6 +805,7 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
