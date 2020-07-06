@@ -18,6 +18,7 @@
         <property name="file" value=""/>
         <property name="s" value=""/>
         <property name="opt" value=""/>
+        <property name="showall" value=""/>
 
         <property name="main-class"  value="aspuser.NewJFrame"/>
             <property name="testing" value="false"/>
@@ -49,6 +50,7 @@
                   <arg value="${file}" />
                   <arg value="${opt}" />
                   <arg value="${s}"/>
+                  <arg value="${showall}"/>
                 </java>
             </target>
 
