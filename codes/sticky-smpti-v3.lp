@@ -21,7 +21,7 @@ acceptable(M,F) :- m2single(M, F), w2single(F, M).
 mprefer(M, F2, F1) :- k_man(M,K), mrank(M,F1,R), mrank(M,F2,R1), R - R1 > K.
 
 % F prefers DM to CM.
-wprefer(F, M1, M2) :- k_woman(F,K2), wrank(F2,M2,R), wrank(F2,M1,R1), R - R1 > K2.
+wprefer(F, M1, M2) :- k_woman(F,K2), wrank(F,M2,R), wrank(F,M1,R1), R - R1 > K2.
 
 % TEST
 
