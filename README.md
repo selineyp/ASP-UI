@@ -1,6 +1,6 @@
 # SMTI Solver
 
-This software provides a user interface for solving Stable Marriage Problem(SMP) instances.
+This software provides a user interface for solving Stable Marriage Problem with Ties and Incomplete Lists (SMTI) instances.
 Users may select .txt input files by clicking the File tab and/or edit them in text area.
 
 ## Input format
@@ -81,6 +81,6 @@ This command will solve SMP instance given in the file with sex equal optimizati
 
 ## Output format
 
-In result.txt,  married pairs are given. For each row in the file, index of man is given under M and woman's index under W.
+In result.txt, married pairs are given. For each row in the file, index of man is given under M and woman's index under W.
 If an individual does not appear in columns, then s/he is single.
 
